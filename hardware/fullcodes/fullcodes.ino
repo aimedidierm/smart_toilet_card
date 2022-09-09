@@ -1,3 +1,4 @@
+#include <ArduinoJson.h>
 #include <LiquidCrystal_I2C.h>
 #include <SPI.h>
 #include <MFRC522.h>
@@ -14,6 +15,7 @@ int motor1=6;
 int motor2=7;
 const int buto = 8;  
 byte readCard[4];
+int k=0;
 String tagID = "";
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
@@ -39,6 +41,7 @@ pinMode(buto, INPUT);
 }
 
 void loop() {
+ Serial.begin(115200);
  lcd.clear();
  lcd.setCursor(0, 0);
  lcd.print("Place Your Card");    
@@ -51,15 +54,36 @@ void loop() {
     tone(buzzer, 1000, 1000);
     delay(2000);
     opendoor();
-      }
-    if (tagID == "A38FACAB"){
+      } else if (tagID == "A38FACAB"){
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Welcome cleaner");
     tone(buzzer, 1000, 1000);
     delay(2000);
     opendoor();
-      }
+      } else{
+        Serial.println((String)"?card="+tagID);
+        while(k==0){
+          if (Serial.available() > 0) {
+            //kwakira data zivuye kuri node mcu na server
+          DynamicJsonBuffer jsonBuffer;
+          JsonObject& root = jsonBuffer.parseObject(Serial.readStringUntil('\n'));
+          if (root["cstatus"]) {
+          int cstatus = root["cstatus"];
+          int balance = root["balance"];
+          if(cstatus==0){
+            lowbalance();
+            } else{
+              lcd.clear();
+              lcd.setCursor(0, 0);
+              lcd.print("Balance:");
+              lcd.print(balance);
+              opendoor();
+              }
+          }
+          }
+              }
+        }
     
     }
 }
