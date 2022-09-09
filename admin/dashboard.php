@@ -73,7 +73,7 @@ $sellers=$stmt->rowCount();*/
                                 
                             <div class="panel-right">
 							<h3><?php //echo $users;?></h3>
-                               <strong> Total students</strong>
+                               <strong> Total users</strong>
 
                             </div>
                         </div>
@@ -86,7 +86,7 @@ $sellers=$stmt->rowCount();*/
                             </div>
                             <div class="panel-right">
 							 <h3><?php //echo $scnumb;?></h3>
-                               <strong> Total schools</strong>
+                               <strong> Total toilets</strong>
 
                             </div>
                         </div>

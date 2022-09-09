@@ -87,7 +87,7 @@ $users=$stmt->rowCount();
                             </div>
                             <div class="panel-right">
 							 <h3><?php echo $trnumb;?></h3>
-                               <strong> Your sales</strong>
+                               <strong> Your total sales</strong>
 
                             </div>
                         </div>
