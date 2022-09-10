@@ -26,11 +26,11 @@ require 'php-includes/check-login.php';
         <?php require 'php-includes/nav.php';?>
         <div id="page-wrapper">
 		  <div class="header"> 
-        <h1 class="page-header">Users transactions</h1>
+        <h1 class="page-header">Sellers transactions</h1>
           <ol class="breadcrumb">
             <li><a href="dashboard.php">Home</a></li>
             <li>Transactions</li>
-            <li class="active">Users</li>
+            <li class="active">Sellers</li>
           </ol>
 			<h1>						
 		</div>
@@ -49,7 +49,7 @@ require 'php-includes/check-login.php';
                                             <th>N</th>
                                             <th>Debit</th>
                                             <th>Credit</th>
-                                            <th>User</th>
+                                            <th>Seller</th>
                                             <th>Time</th>
                                         </tr>
                                     </thead>

@@ -24,7 +24,7 @@ if(isset($_POST['save'])){
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>School</title>
+    <title>Admin</title>
 	<!-- Bootstrap Styles-->
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->

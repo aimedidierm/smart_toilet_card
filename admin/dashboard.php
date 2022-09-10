@@ -4,18 +4,19 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
-/*$sql = "SELECT * FROM transactions";
+$sql = "SELECT * FROM transactions";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $trnumb=$stmt->rowCount();
-$sql = "SELECT * FROM student";
+$sql = "SELECT * FROM user";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $users=$stmt->rowCount();
 $sql = "SELECT * FROM seller";
 $stmt = $db->prepare($sql);
 $stmt->execute();
-$sellers=$stmt->rowCount();*/
+$sellers=$stmt->rowCount();
+$toillets=$sellers;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -60,7 +61,7 @@ $sellers=$stmt->rowCount();*/
                                 
                             </div>
                             <div class="panel-right">
-								<h3><?php //echo $trnumb;?></h3>
+								<h3><?php echo $trnumb;?></h3>
                                <strong> Transactions</strong>
                             </div>
                         </div>
@@ -72,7 +73,7 @@ $sellers=$stmt->rowCount();*/
 								</div>
                                 
                             <div class="panel-right">
-							<h3><?php //echo $users;?></h3>
+							<h3><?php echo $users;?></h3>
                                <strong> Total users</strong>
 
                             </div>
@@ -85,7 +86,7 @@ $sellers=$stmt->rowCount();*/
                                
                             </div>
                             <div class="panel-right">
-							 <h3><?php //echo $scnumb;?></h3>
+							 <h3><?php echo $toillets;?></h3>
                                <strong> Total toilets</strong>
 
                             </div>
@@ -98,7 +99,7 @@ $sellers=$stmt->rowCount();*/
                                 
                             </div>
                             <div class="panel-right">
-							<h3><?php //echo $sellers;?></h3>
+							<h3><?php echo $sellers;?></h3>
                              <strong>Total sellers</strong>
 
                             </div>

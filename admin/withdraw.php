@@ -24,7 +24,7 @@ if(isset($_POST['save'])){
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>School</title>
+    <title>Admin</title>
 	<!-- Bootstrap Styles-->
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -43,10 +43,10 @@ if(isset($_POST['save'])){
         <?php require 'php-includes/nav.php';?>
         <div id="page-wrapper">
 		  <div class="header"> 
-        <h1 class="page-header">User management</h1>
+        <h1 class="page-header">Withdraw</h1>
           <ol class="breadcrumb">
             <li><a href="dashboard.php">Home</a></li>
-            <li class="active">User</li>
+            <li class="active">Withdraw</li>
           </ol>
 			<h1>						
 		</div>
