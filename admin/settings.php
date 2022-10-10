@@ -62,7 +62,7 @@ require 'php-includes/check-login.php';
                                         if($apassword == $cpassword){
                                             $sql ="UPDATE admin SET address = ?, phone = ? , password = ? WHERE email = ?";
                                             $stm = $db->prepare($sql);
-                                            if ($stm->execute(array($uaddress, $uphone, $cpassword, $_SESSION['code']))) {
+                                            if ($stm->execute(array($uaddress, $uphone, $cpassword, $_SESSION['email']))) {
                                                 print "<script>alert('your data updated');window.location.assign('settings.php')</script>";
 
                                                 }

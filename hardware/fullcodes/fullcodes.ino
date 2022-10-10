@@ -134,6 +134,7 @@ void opendoor2(){
   delay(5000);
   digitalWrite(motor2,HIGH);
   digitalWrite(motor1,LOW);
+  digitalWrite(led,LOW);
   resetFunc();
   }
   delay(200);

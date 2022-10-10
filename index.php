@@ -41,6 +41,7 @@ require 'php-includes/connect.php';
                                         <div class="form-group">
                                         <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                                         </div>
+                                        <a href="momo.php" class="btn btn-danger btn-md">MOMO</a>
                             </div>
                             <!-- /.row (nested) -->
                         </div>
