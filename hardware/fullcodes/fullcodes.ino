@@ -71,7 +71,7 @@ void loop() {
           if (root["cstatus"]) {
           int cstatus = root["cstatus"];
           int balance = root["balance"];
-          if(cstatus==0){
+          if(cstatus==1){
             lowbalance();
             } else{
               lcd.clear();

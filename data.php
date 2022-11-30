@@ -5,8 +5,8 @@ error_reporting(E_ALL);
 require 'php-includes/connect.php';
 $newamount=0;
 $price=100;
-if(isset($_GET['card'])){
-    $card = $_GET['card'];
+if(isset($POST['card'])){
+    $card = $_POST['card'];
     $query = "SELECT id,balance FROM user WHERE card = ? limit 1";
     $stmt = $db->prepare($query);
     $stmt->execute(array($card));
@@ -26,7 +26,7 @@ if(isset($_GET['card'])){
                 echo $response = json_encode($data);
             }
         } else {
-            $data = array('outml' =>'0'); 
+            $data = array('cstatus' =>'2'); 
             echo $response = json_encode($data);
         }
     }
