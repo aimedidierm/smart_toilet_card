@@ -13,7 +13,7 @@ $sql = "SELECT * FROM transactions WHERE seller = ?";
 $stmt = $db->prepare($sql);
 $stmt->execute(array($myid));
 $trnumb=$stmt->rowCount();
-$sql = "SELECT * FROM student";
+$sql = "SELECT * FROM user";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $users=$stmt->rowCount();
