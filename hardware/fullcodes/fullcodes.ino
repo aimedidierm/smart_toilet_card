@@ -36,12 +36,11 @@ pinMode(buto, INPUT);
   lcd.print("Smart public");
   lcd.setCursor(5, 1);
   lcd.print("toilette");
+  Serial.begin(115200);
   delay(3000);
-  Serial.begin(9600);
 }
 
 void loop() {
- Serial.begin(115200);
  lcd.clear();
  lcd.setCursor(0, 0);
  lcd.print("Place Your Card");    
@@ -62,7 +61,7 @@ void loop() {
     delay(2000);
     opendoor();
       } else{
-        Serial.println((String)"?card="+tagID);
+        Serial.println((String)"card="+tagID);
         while(k==0){
           if (Serial.available() > 0) {
             //kwakira data zivuye kuri node mcu na server
