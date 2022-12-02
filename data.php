@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 require 'php-includes/connect.php';
 $newamount=0;
 $price=100;
-if(isset($POST['card'])){
+if(isset($_POST['card'])){
     $card = $_POST['card'];
     $query = "SELECT id,balance FROM user WHERE card = ? limit 1";
     $stmt = $db->prepare($query);
