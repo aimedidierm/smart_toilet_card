@@ -4,7 +4,7 @@
 #include <MFRC522.h>
 int lcdColumns = 16;
 int lcdRows = 2;
-
+String data="";
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
 
 #define SS_PIN 10
@@ -27,7 +27,7 @@ pinMode(led, OUTPUT);
 pinMode(motor1,OUTPUT);
 pinMode(motor2,OUTPUT);
 pinMode(buto, INPUT);
-
+Serial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();
   lcd.init();
@@ -36,7 +36,6 @@ pinMode(buto, INPUT);
   lcd.print("Smart public");
   lcd.setCursor(5, 1);
   lcd.print("toilette");
-  Serial.begin(115200);
   delay(3000);
 }
 
@@ -61,12 +60,16 @@ void loop() {
     delay(2000);
     opendoor();
       } else{
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Loading");
         Serial.println((String)"card="+tagID);
         while(k==0){
           if (Serial.available() > 0) {
+            data = Serial.readStringUntil('\n');
             //kwakira data zivuye kuri node mcu na server
           DynamicJsonBuffer jsonBuffer;
-          JsonObject& root = jsonBuffer.parseObject(Serial.readStringUntil('\n'));
+          JsonObject& root = jsonBuffer.parseObject(data);
           if (root["cstatus"]) {
           int cstatus = root["cstatus"];
           int balance = root["balance"];

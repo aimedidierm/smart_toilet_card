@@ -5,9 +5,11 @@ error_reporting(E_ALL);
 require 'php-includes/connect.php';
 $newamount=0;
 $price=100;
+$data = array('cstatus' =>'2'); 
+echo $response = json_encode($data);
 if(isset($_POST['card'])){
     $card = $_POST['card'];
-    $query = "SELECT id,balance FROM user WHERE card = ? limit 1";
+    $query = "SELECT * FROM user WHERE card = ? limit 1";
     $stmt = $db->prepare($query);
     $stmt->execute(array($card));
     if ($stmt->rowCount()>0) {
