@@ -1,14 +1,13 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(E_ALL);
+//ini_set('display_errors',1);
+//ini_set('display_startup_errors',1);
+//error_reporting(E_ALL);
 require 'php-includes/connect.php';
 $newamount=0;
 $price=100;
-$data = array('cstatus' =>'2'); 
-echo $response = json_encode($data);
-if(isset($_POST['card'])){
-    $card = $_POST['card'];
+//if(isset($_POST['dmoney'])){
+    //$card=$_POST['card'];
+    $card="5314B2AB";
     $query = "SELECT * FROM user WHERE card = ? limit 1";
     $stmt = $db->prepare($query);
     $stmt->execute(array($card));
@@ -24,13 +23,13 @@ if(isset($_POST['card'])){
                 $sql ="INSERT INTO transactions (credit,user) VALUES (?,?)";
                 $stm = $db->prepare($sql);
                 $stm->execute(array($price,$user));
-                $data = array('cstatus' =>'1','balance' =>$newamount); 
+                $data = array("cstatus" =>"3","balance" =>$newamount); 
                 echo $response = json_encode($data);
             }
         } else {
-            $data = array('cstatus' =>'2'); 
+            $data = array("cstatus" =>"1"); 
             echo $response = json_encode($data);
         }
-    }
 }
+//}
 ?>

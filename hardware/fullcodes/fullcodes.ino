@@ -6,7 +6,7 @@ int lcdColumns = 16;
 int lcdRows = 2;
 String data="";
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
-
+char directmoney[12]="0788";
 #define SS_PIN 10
 #define RST_PIN 9
 #define buzzer 3
@@ -18,7 +18,7 @@ byte readCard[4];
 int k=0;
 String tagID = "";
 MFRC522 mfrc522(SS_PIN, RST_PIN);
-
+String card="";
 boolean getID();
 int buttonState = 0;
 void setup() {
@@ -59,11 +59,37 @@ void loop() {
     tone(buzzer, 1000, 1000);
     delay(2000);
     opendoor();
-      } else{
+      } else if (tagID == "3379BEAB"){
         lcd.clear();
         lcd.setCursor(0, 0);
         lcd.print("Loading");
-        Serial.println((String)"card="+tagID);
+        Serial.println((String)"card="+tagID+"&dmoney="+directmoney);
+        while(k==0){
+          if (Serial.available() > 0) {
+            data = Serial.readStringUntil('\n');
+            //kwakira data zivuye kuri node mcu na server
+          DynamicJsonBuffer jsonBuffer;
+          JsonObject& root = jsonBuffer.parseObject(data);
+          if (root["cstatus"]) {
+          int cstatus = root["cstatus"];
+          int balance = root["balance"];
+          if(cstatus==1){
+            lowbalance();
+            } else{
+              lcd.clear();
+              lcd.setCursor(0, 0);
+              lcd.print("Balance:");
+              lcd.print(balance);
+              opendoor();
+              }
+          }
+          }
+              }
+        } else if (tagID == "5314B2AB"){
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Loading");
+        Serial.println((String)"card="+tagID+"&dmoney="+directmoney);
         while(k==0){
           if (Serial.available() > 0) {
             data = Serial.readStringUntil('\n');

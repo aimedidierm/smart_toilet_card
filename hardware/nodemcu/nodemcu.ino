@@ -5,8 +5,8 @@
 SoftwareSerial s(3,1);
 const char* ssid = "Virus";
 const char* password = "mbega123455";
-//String serverName = "http://192.168.43.76/smart_toilet_card/data.php";
-String serverName = "http://didier.requestcatcher.com/";
+String serverName = "http://192.168.43.76/smart_toilet_card/data.php";
+//String serverName = "http://didier.requestcatcher.com/";
 void setup() {
   s.begin(9600);
   WiFi.begin(ssid, password);
@@ -16,12 +16,11 @@ void setup() {
 }
 
 void loop() {
-    if(WiFi.status()== WL_CONNECTED){
+    if(s.available( ) > 0){
       WiFiClient client;
       HTTPClient http;
-      //String   httpRequestData = Serial.readStringUntil('\n');
       http.begin(client, serverName);
-      http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+      http.addHeader("Content-Type", "multipart/form-data");
       String httpRequestData = s.readStringUntil('\n');
       int      httpResponseCode = http.POST(httpRequestData);
       if (httpResponseCode>0) {
