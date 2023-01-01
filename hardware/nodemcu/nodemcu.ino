@@ -5,8 +5,7 @@
 SoftwareSerial s(3,1);
 const char* ssid = "Virus";
 const char* password = "mbega123455";
-String serverName = "http://192.168.43.76/smart_toilet_card/data.php";
-//String serverName = "http://didier.requestcatcher.com/";
+String serverName = "http://137.184.232.255/smart_toilet_card/data.php";
 void setup() {
   s.begin(9600);
   WiFi.begin(ssid, password);
