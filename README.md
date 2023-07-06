@@ -1,5 +1,4 @@
 # smart_toilet_card
-# Smart public tape project
 ## Intro
 Smart public toilet where client will pay by using RFID card..
 
