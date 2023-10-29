@@ -25,4 +25,3 @@ if ($stmt->rowCount()>0) {
 }else{
 	echo "<script>alert('Your ID or Password is Wrong');window.location.assign('index.php')</script>";
 }
-?>

@@ -1,29 +1,31 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require 'php-includes/connect.php';
 ?>
 <!DOCTYPE html>
+
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart toilet</title>
-	<!-- Bootstrap Styles-->
+    <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FontAwesome Styles-->
+    <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <!-- Custom Styles-->
+    <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
-     <!-- Google Fonts-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
+
 <body>
-<h1 class="page-header">Smart toilet card</h1>
+    <h1 class="page-header">Smart Public Toilet Billing System</h1>
     <div>
-		
-            <div id="page-inner"> 
-              <div class="row">
+
+        <div id="page-inner">
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -39,31 +41,32 @@ require 'php-includes/connect.php';
                                             <input name="password" class="form-control" placeholder="Enter password" type="password">
                                         </div>
                                         <div class="form-group">
-                                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
+                                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                                         </div>
                                         <a href="momo.php" class="btn btn-danger btn-md">MOMO</a>
+                                </div>
+                                <!-- /.row (nested) -->
                             </div>
-                            <!-- /.row (nested) -->
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /. PAGE WRAPPER  -->
             </div>
-         <!-- /. PAGE WRAPPER  -->
-        </div>
-     <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-      <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
-    
-   
+            <!-- /. WRAPPER  -->
+            <!-- JS Scripts-->
+            <!-- jQuery Js -->
+            <script src="assets/js/jquery-1.10.2.js"></script>
+            <!-- Bootstrap Js -->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <!-- Metis Menu Js -->
+            <script src="assets/js/jquery.metisMenu.js"></script>
+            <!-- Custom Js -->
+            <script src="assets/js/custom-scripts.js"></script>
+
+
 </body>
+
 </html>
