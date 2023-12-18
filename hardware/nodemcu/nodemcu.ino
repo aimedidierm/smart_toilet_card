@@ -3,9 +3,9 @@
 #include <WiFiClient.h>
 #include<SoftwareSerial.h>
 SoftwareSerial s(3,1);
-const char* ssid = "Sano";
-const char* password = "sano33333";
-String serverName = "http://172.20.10.12/smart_toilet_card/data.php";
+const char* ssid = "Balance";
+const char* password = "balance123";
+String serverName = "https://didier.requestcatcher.com/";
 void setup() {
   s.begin(9600);
   WiFi.begin(ssid, password);
