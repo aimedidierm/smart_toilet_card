@@ -2,10 +2,10 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 #include <ArduinoJson.h>
+const char* ssid = "Balance";
+const char* password = "balance123";
 
-const char* ssid = "Rwanda-ltd";
-const char* password = "VRT0931VRT";
-String serverName = "http://192.168.1.71/smart_toilet_card/data.php";
+String serverName = "http://192.168.43.84/smart_toilet_card/data.php";
 
 void setup() {
   Serial.begin(9600); 
