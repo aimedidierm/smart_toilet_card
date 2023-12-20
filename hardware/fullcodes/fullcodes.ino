@@ -2,17 +2,15 @@
 #include <LiquidCrystal.h>
 #include <SPI.h>
 #include <MFRC522.h>
-#include <SoftwareSerial.h>
 
 String data = "";
 LiquidCrystal lcd(A0, A1, A2, A3, A4, A5);
-char directmoney[12] = "100";
 #define SS_PIN 10
 #define RST_PIN 9
 #define buzzer 8
-#define red 0
-#define green 1
-int motor1 = 4;
+#define red 7
+#define green 3
+int motor1 = 6;
 int motor2 = 5;
 const int buto = 2;
 byte readCard[4];
@@ -22,7 +20,6 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 String card = "";
 boolean getID();
 int buttonState = 0;
-SoftwareSerial mySerial(6, 7);
 void setup()
 {
   lcd.begin(16, 2);
@@ -33,7 +30,7 @@ void setup()
   pinMode(buto, INPUT);
   digitalWrite(red, LOW);
   digitalWrite(green, LOW);
-  mySerial.begin(9600);
+  Serial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();
   lcd.setCursor(0, 0);
@@ -75,33 +72,34 @@ void loop()
       delay(2000);
       opendoor();
     }
-    else if (tagID == "3379BEAB" || tagID == "5314B2AB")
+    else
     {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Loading");
-      mySerial.println((String)"card=" + tagID + "&dmoney=" + directmoney);
+      StaticJsonDocument<50> doc;
+      doc["card"] = tagID;
+      serializeJson(doc, Serial);
+      Serial.println();
       while (k == 0)
       {
-        if (mySerial.available() > 0)
+        if (Serial.available() > 0)
         {
-          data = mySerial.readStringUntil('\n');
-          //kwakira data zivuye kuri node mcu na server
+          data = Serial.readStringUntil('\n');
 
-          DynamicJsonDocument doc(1024); // Adjust the size as needed
+          DynamicJsonDocument doc(1024);
           DeserializationError error = deserializeJson(doc, data);
-
+          Serial.println(data);
           if (error)
           {
-            mySerial.print(F("deserializeJson() failed: "));
-            mySerial.println(error.f_str());
+            Serial.print(F("deserializeJson() failed: "));
+            Serial.println(error.f_str());
             return;
           }
 
           if (doc["cstatus"])
           {
             int cstatus = doc["cstatus"];
-            int balance = doc["balance"];
 
             if (cstatus == 1)
             {
@@ -109,11 +107,15 @@ void loop()
             }
             else
             {
+            int balance = doc["balance"];
               lcd.clear();
               lcd.setCursor(0, 0);
+              lcd.print("Welcome");
+              lcd.setCursor(0, 1);
               lcd.print("Balance:");
               lcd.print(balance);
               digitalWrite(green, HIGH);
+              delay(2000);
               opendoor();
             }
           }
@@ -150,9 +152,21 @@ void lowbalance()
   lcd.clear();
   lcd.setCursor(0, 0);
   digitalWrite(red, HIGH);
-  lcd.print("Insufficient funds");
+  lcd.print("Low balance");
   tone(buzzer, 1000, 500);
-  delay(1300);
+  delay(3000);
+  digitalWrite(red, LOW);
+  resetFunc();
+}
+
+void cardNotFound()
+{
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  digitalWrite(red, HIGH);
+  lcd.print("Card not found");
+  tone(buzzer, 1000, 500);
+  delay(3000);
   digitalWrite(red, LOW);
   resetFunc();
 }
@@ -160,12 +174,13 @@ void lowbalance()
 void opendoor()
 {
   digitalWrite(green, HIGH);
-  digitalWrite(motor1,HIGH);
-  digitalWrite(motor2,LOW);
-  delay(2000);
-  digitalWrite(motor2,HIGH);
-  digitalWrite(motor1,LOW);
-  delay(5000);
+  openSingleDoor();
+  openSingleDoor();
+  openSingleDoor();
+  delay(3000);
+  closeSingleDoor();
+  closeSingleDoor();
+  closeSingleDoor();
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Somebody in");
@@ -181,14 +196,36 @@ void opendoor2()
     buttonState = digitalRead(buto);
     if (buttonState == LOW)
     {
-      digitalWrite(motor1,HIGH);
-      digitalWrite(motor2,LOW);
-      delay(2000);
-      digitalWrite(motor2,HIGH);
-      digitalWrite(motor1,LOW);
-      delay(5000);
+      openSingleDoor();
+      openSingleDoor();
+      openSingleDoor();
+      delay(3000);
+      closeSingleDoor();
+      closeSingleDoor();
+      closeSingleDoor();
       resetFunc();
     }
     delay(200);
   }
+}
+
+void openSingleDoor()
+{
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Opening Door");
+  digitalWrite(motor1,HIGH);
+  digitalWrite(motor2,LOW);
+  delay(400);
+}
+
+void closeSingleDoor()
+{
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Closing Door");
+  digitalWrite(motor1,LOW);
+  digitalWrite(motor2,HIGH);
+  delay(400); 
+  digitalWrite(motor2,LOW);
 }
