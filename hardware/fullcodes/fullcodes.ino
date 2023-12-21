@@ -81,44 +81,45 @@ void loop()
       doc["card"] = tagID;
       serializeJson(doc, Serial);
       Serial.println();
+      delay(1000);
       while (k == 0)
       {
         if (Serial.available() > 0)
         {
           data = Serial.readStringUntil('\n');
 
-          DynamicJsonDocument doc(2048);
-          DeserializationError error = deserializeJson(doc, data);
-          // Serial.println(data);
-          if (error)
-          {
-            Serial.print(F("deserializeJson() failed: "));
-            Serial.println(error.f_str());
-            return;
-          } 
+          // DynamicJsonDocument doc(2048);
+          // DeserializationError error = deserializeJson(doc, data);
+          Serial.println(data);
+          // if (error)
+          // {
+          //   Serial.print(F("deserializeJson() failed: "));
+          //   Serial.println(error.f_str());
+          //   return;
+          // } 
 
-          if (doc["cstatus"])
-          {
-            int cstatus = doc["cstatus"];
+          // if (doc["cstatus"])
+          // {
+            // int cstatus = doc["cstatus"];
 
-            if (cstatus == 1)
-            {
-              lowbalance();
-            }
-            else
-            {
-            int balance = doc["balance"];
+            // if (data == "1")
+            // {
+            //   lowbalance();
+            // } else if(data == 1){
+
+            // int balance = doc["balance"];
               lcd.clear();
               lcd.setCursor(0, 0);
               lcd.print("Welcome");
               lcd.setCursor(0, 1);
-              lcd.print("Balance:");
-              lcd.print(balance);
+              // lcd.print("Balance:");
+              // lcd.print(balance);
               digitalWrite(green, HIGH);
               delay(2000);
               opendoor();
-            }
-          }
+            // }  else {
+            // }
+          // }
         }
       }
     }

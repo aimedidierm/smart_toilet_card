@@ -33,17 +33,18 @@ void loop() {
       String data = Serial.readStringUntil('\n');
 
       // Parse JSON using ArduinoJson version 6
-      DynamicJsonDocument jsonDoc(2048);  // Adjust the size based on your JSON structure
-      DeserializationError error = deserializeJson(jsonDoc, data);
+      // DynamicJsonDocument jsonDoc(2048);  // Adjust the size based on your JSON structure
+      // DeserializationError error = deserializeJson(jsonDoc, data);
 
-      if (error) {
-        Serial.print("JSON parsing error: ");
-        Serial.println(error.c_str());
-        return;
-      }
+      // if (error) {
+      //   Serial.print("JSON parsing error: ");
+      //   Serial.println(error.c_str());
+      //   return;
+      // }
 
-      String card = jsonDoc["card"].as<String>();
-      String serverPath = serverName + "?card=" + card;
+      // String card = jsonDoc["card"].as<String>();
+      // String serverPath = serverName + "?card=" + card;
+      String serverPath = serverName + "?card=734DAD43";
       Serial.println(serverPath);
       http.begin(client, serverPath);
   
