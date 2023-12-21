@@ -5,7 +5,7 @@
 const char* ssid = "Balance";
 const char* password = "balance123";
 
-String serverName = "http://192.168.43.84/smart_toilet_card/data.php";
+String serverName = "http://192.168.43.33/smart_toilet_card/data.php";
 
 void setup() {
   Serial.begin(9600); 
@@ -33,7 +33,7 @@ void loop() {
       String data = Serial.readStringUntil('\n');
 
       // Parse JSON using ArduinoJson version 6
-      DynamicJsonDocument jsonDoc(1024);  // Adjust the size based on your JSON structure
+      DynamicJsonDocument jsonDoc(2048);  // Adjust the size based on your JSON structure
       DeserializationError error = deserializeJson(jsonDoc, data);
 
       if (error) {

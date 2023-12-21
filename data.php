@@ -34,11 +34,8 @@ if (isset($_REQUEST['card'])) {
                 echo $response = json_encode($data);
             }
         } else {
-            $data = array("cstatus" => "2");
+            $data = array("cstatus" => "1");
             echo $response = json_encode($data);
         }
-    } else {
-        $data = array("cstatus" => "1");
-        echo $response = json_encode($data);
     }
 }

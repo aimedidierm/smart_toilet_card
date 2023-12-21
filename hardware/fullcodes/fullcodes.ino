@@ -87,15 +87,15 @@ void loop()
         {
           data = Serial.readStringUntil('\n');
 
-          DynamicJsonDocument doc(1024);
+          DynamicJsonDocument doc(2048);
           DeserializationError error = deserializeJson(doc, data);
-          Serial.println(data);
+          // Serial.println(data);
           if (error)
           {
             Serial.print(F("deserializeJson() failed: "));
             Serial.println(error.f_str());
             return;
-          }
+          } 
 
           if (doc["cstatus"])
           {
