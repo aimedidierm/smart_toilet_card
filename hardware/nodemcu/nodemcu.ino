@@ -2,24 +2,24 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 #include <ArduinoJson.h>
-const char* ssid = "Balance";
-const char* password = "balance123";
+const char* ssid = "Sano";
+const char* password = "sano333333";
 
-String serverName = "http://192.168.43.33/smart_toilet_card/data.php";
+String serverName = "http://172.20.10.12/smart_toilet_card/data.php";
 
 void setup() {
-  Serial.begin(9600); 
+  Serial.begin(9600);
 
   WiFi.begin(ssid, password);
   Serial.println("Connecting");
-  while(WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
- 
+
   Serial.println("Timer set to 5 seconds (timerDelay variable), it will take 5 seconds before publishing the first reading.");
 }
 
@@ -47,13 +47,13 @@ void loop() {
       String serverPath = serverName + "?card=734DAD43";
       Serial.println(serverPath);
       http.begin(client, serverPath);
-  
+
       // If you need Node-RED/server authentication, insert user and password below
       // http.setAuthorization("REPLACE_WITH_SERVER_USERNAME", "REPLACE_WITH_SERVER_PASSWORD");
-        
+
       // Send HTTP GET request
       int httpResponseCode = http.GET();
-      
+
       if (httpResponseCode > 0) {
         Serial.print("HTTP Response code: ");
         Serial.println(httpResponseCode);
@@ -67,6 +67,7 @@ void loop() {
 
       // Free resources
       http.end();
+      delay(2000);
     } else {
       Serial.println("WiFi Disconnected");
     }
