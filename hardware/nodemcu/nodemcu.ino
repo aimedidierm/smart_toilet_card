@@ -3,7 +3,7 @@
 #include <WiFiClient.h>
 #include <ArduinoJson.h>
 const char* ssid = "Sano";
-const char* password = "sano333333";
+const char* password = "sano33333";
 
 String serverName = "http://172.20.10.12/smart_toilet_card/data.php";
 
